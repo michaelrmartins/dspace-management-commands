@@ -1,0 +1,19 @@
+#!/bin/bash
+
+########################################################
+# Inicia a aplicação DSpace 8 Angular em modo desenvolvimento
+# e aumentar o limite de memória do Node.js
+# Autor: Michael Martins 
+# Data: 2025-20-05
+#########################################################
+
+# Increase memory limit for Node.js
+export NODE_OPTIONS="--max-old-space-size=6096"
+
+cd /opt/dspace-8-angular
+
+echo "Parando processos"
+pm2 delete dspace-angular
+
+echo "Iniciando aplicaçao em modo Desenvolvimento"
+yarn start:dev

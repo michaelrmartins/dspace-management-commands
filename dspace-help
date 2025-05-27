@@ -1,0 +1,30 @@
+#!/bin/bash
+
+########################################################
+# Script de ajuda para os comandos do DSpace 8
+# Este script lista os comandos disponíveis no diretório /usr/local/sbin/
+# e exibe uma breve descrição de cada um.
+# Para que a descrição seja exibida, cada comando deve conter
+# um comentário na quarta linha que comece com "#".
+# Recomendo que os comandos sejam nomeados de forma a facilitar a identificação,
+# como "dspace-start", "dspace-stop", etc.
+# Também recomendo usar algum comando já existente como modelo,
+# como "dspace-restart-all", "dspace-rebuild", "dspace-restart-services", etc.
+# Autor: Michael Martins 
+# Data: 2025-27-05
+#########################################################
+
+echo "==== Menu de Ajuda - Comandos dspace ===="
+echo
+
+for cmd in /usr/local/sbin/*; do
+    if [[ -x "$cmd" && ! -d "$cmd" && "$cmd" != "/usr/local/sbin/dspace-help" ]]; then
+        cmdname=$(basename "$cmd")
+        # Extrai a 4ª linha que começa com "#"
+        desc=$(grep '^#' "$cmd" | sed -n '3p' | sed 's/^# *//')
+        if [[ -z "$desc" ]]; then
+            desc="(Sem descrição disponível)"
+        fi
+        printf "%-25s - %s\n" "$cmdname" "$desc"
+    fi
+done

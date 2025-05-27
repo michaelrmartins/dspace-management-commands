@@ -1,0 +1,9 @@
+#!/bin/bash
+
+########################################################
+# Finaliza a aplicação DSpace 8 Angular
+# Autor: Michael Martins 
+# Data: 2025-20-05
+#########################################################
+
+pm2 delete dspace-angular

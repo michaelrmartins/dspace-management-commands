@@ -1,0 +1,27 @@
+#!/bin/bash
+
+########################################################
+# Reinicia todos os serviços do DSpace 8 e recompila a aplicação Angular
+# Autor: Michael Martins 
+# Data: 2025-20-05
+#########################################################
+
+echo "Parando aplicação DSpace Angular..."
+cd /opt/dspace-8-angular
+pm2 delete dspace-angular
+
+echo "Reinicinado PostgreSQL..."
+systemctl restart postgresql.service
+
+echo "Reiniciando Solr..."
+/opt/solr-8.11/bin/solr stop -force
+/opt/solr-8.11/bin/solr start -force
+
+echo "Reiniciando Tomcat..."
+systemctl restart tomcat.service
+
+echo "Recompilando aplicação"
+yarn run build:prod
+
+echo "Finalizado!! Iniciando nova versão da aplicação"
+pm2 start dist/server/main.js --name dspace-angular

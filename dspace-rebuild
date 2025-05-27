@@ -1,0 +1,18 @@
+#!/bin/bash
+
+########################################################
+# Recompila a aplicação DSpace 8 Angular e reinicia o processo com PM2
+# Autor: Michael Martins 
+# Data: 2025-20-05
+#########################################################
+
+cd /opt/dspace-8-angular
+
+echo "Parando processos"
+pm2 delete dspace-angular
+
+echo "Recompilando aplicação"
+yarn run build:prod
+echo "Finalizado!! Iniciando nova versão da aplicação"
+
+pm2 start dist/server/main.js --name dspace-angular

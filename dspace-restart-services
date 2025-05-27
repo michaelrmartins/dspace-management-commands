@@ -1,0 +1,20 @@
+#!/bin/bash
+
+########################################################
+# Reinicia apenas os serviços do DSpace 8 sem recompilar a aplicação
+# Banco de dados PostgreSQL, Solr e Tomcat
+# Autor: Michael Martins 
+# Data: 2025-20-05
+#########################################################
+
+echo "Reinicinado PostgreSQL..."
+systemctl restart postgresql.service
+
+echo "Reiniciando Solr..."
+/opt/solr-8.11/bin/solr stop -force
+/opt/solr-8.11/bin/solr start -force
+
+echo "Reiniciando Tomcat..."
+systemctl restart tomcat.service
+
+echo "Finalizado, agora você pode executar dspace-start para iniciar a aplicação"
