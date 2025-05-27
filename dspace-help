@@ -20,7 +20,6 @@ echo
 for cmd in /usr/local/sbin/*; do
     if [[ -x "$cmd" && ! -d "$cmd" && "$cmd" != "/usr/local/sbin/dspace-help" ]]; then
         cmdname=$(basename "$cmd")
-        # Extrai a 4ª linha que começa com "#"
         desc=$(grep '^#' "$cmd" | sed -n '3p' | sed 's/^# *//')
         if [[ -z "$desc" ]]; then
             desc="(Sem descrição disponível)"
