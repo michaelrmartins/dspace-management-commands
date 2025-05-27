@@ -23,3 +23,5 @@ Este repositório contém scripts para facilitar o gerenciamento da aplicação 
 
 **Autor:** Michael Martins  
 **Data:** 2025-05-20
+
+![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)
