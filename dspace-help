@@ -17,7 +17,7 @@
 echo "==== Menu de Ajuda - Comandos dspace ===="
 echo
 
-for cmd in /usr/local/sbin/*; do
+for cmd in /usr/local/sbin/dspace*; do
     if [[ -x "$cmd" && ! -d "$cmd" && "$cmd" != "/usr/local/sbin/dspace-help" ]]; then
         cmdname=$(basename "$cmd")
         desc=$(grep '^#' "$cmd" | sed -n '3p' | sed 's/^# *//')
